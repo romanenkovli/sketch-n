@@ -1,0 +1,564 @@
+ ngroup, nz=           1           1  Diag_Dom =  -0.463723153    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35318E+02 0.35942E+02 0.30152E+02 0.93856E+02 0.93856E+02 0.21417E+02 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1           1  Diag_Dom =   -5.02935890E-03
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  100 0.34415E+02 0.38140E+02 0.22786E+02 0.81802E+02 0.34452E+02 0.16497E+02 0.22695E+03
+ Assembly Number =           35
+  Numbers inside Assembly
+                       99  100  114  115
+ ngroup, nz=           1           1  Diag_Dom =  -0.463723153    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35318E+02 0.35942E+02 0.30152E+02 0.93856E+02 0.93856E+02 0.21417E+02 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1           1  Diag_Dom =  -0.456503153    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35318E+02 0.35318E+02 0.30152E+02 0.93856E+02 0.93856E+02 0.21417E+02 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1           1  Diag_Dom =  -0.456503153    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35318E+02 0.35318E+02 0.30152E+02 0.93856E+02 0.93856E+02 0.21417E+02 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1           1  Diag_Dom =   -5.02929138E-03
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  208 0.38140E+02 0.34415E+02 0.22786E+02 0.34452E+02 0.81802E+02 0.16497E+02 0.22695E+03
+ Assembly Number =           60
+  Numbers inside Assembly
+                      199  200  208  209
+ ngroup, nz=           1           1  Diag_Dom =  -0.463723153    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35942E+02 0.35318E+02 0.30152E+02 0.93856E+02 0.93856E+02 0.21417E+02 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1           1  Diag_Dom =  -0.463723153    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35942E+02 0.35318E+02 0.30152E+02 0.93856E+02 0.93856E+02 0.21417E+02 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1           3  Diag_Dom =   -6.66245073E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.12861E+02 0.13090E+02 0.17173E+02 0.33841E+02 0.33841E+02 0.71271E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1           3  Diag_Dom =   -6.66245073E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.12861E+02 0.13090E+02 0.17173E+02 0.33841E+02 0.33841E+02 0.71271E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1           3  Diag_Dom =   -6.23597950E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.12861E+02 0.12861E+02 0.17173E+02 0.33841E+02 0.33841E+02 0.71271E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1           3  Diag_Dom =   -6.23597950E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.12861E+02 0.12861E+02 0.17173E+02 0.33841E+02 0.33841E+02 0.71271E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1           3  Diag_Dom =   -6.66245073E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.13090E+02 0.12861E+02 0.17173E+02 0.33841E+02 0.33841E+02 0.71271E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1           3  Diag_Dom =   -6.66245073E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.13090E+02 0.12861E+02 0.17173E+02 0.33841E+02 0.33841E+02 0.71271E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1           4  Diag_Dom =   -3.60721759E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.17538E+02 0.17850E+02 0.13119E+02 0.46147E+02 0.46147E+02 0.42870E+00 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1           4  Diag_Dom =   -3.60721759E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.17538E+02 0.17850E+02 0.13119E+02 0.46147E+02 0.46147E+02 0.42870E+00 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1           4  Diag_Dom =   -3.14258337E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.17538E+02 0.17538E+02 0.13119E+02 0.46147E+02 0.46147E+02 0.42870E+00 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1           4  Diag_Dom =   -3.14258337E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.17538E+02 0.17538E+02 0.13119E+02 0.46147E+02 0.46147E+02 0.42870E+00 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1           4  Diag_Dom =   -3.60721759E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.17850E+02 0.17538E+02 0.13119E+02 0.46147E+02 0.46147E+02 0.42870E+00 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1           4  Diag_Dom =   -3.60721759E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.17850E+02 0.17538E+02 0.13119E+02 0.46147E+02 0.46147E+02 0.42870E+00 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1           5  Diag_Dom =  -0.126207203    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.11269E+02 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1           5  Diag_Dom =  -0.126207203    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.11269E+02 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1           5  Diag_Dom =  -0.120712109    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.11269E+02 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1           5  Diag_Dom =  -0.120712109    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.11269E+02 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1           5  Diag_Dom =  -0.126207203    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.11269E+02 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1           5  Diag_Dom =  -0.126207203    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.11269E+02 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1           6  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1           6  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1           6  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1           6  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1           6  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1           6  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1           7  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1           7  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1           7  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1           7  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1           7  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1           7  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1           8  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1           8  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1           8  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1           8  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1           8  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1           8  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1           9  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1           9  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1           9  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1           9  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1           9  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1           9  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1          10  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1          10  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1          10  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1          10  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1          10  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1          10  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1          11  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1          11  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1          11  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1          11  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1          11  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1          11  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1          12  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1          12  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1          12  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1          12  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1          12  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1          12  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1          13  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1          13  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1          13  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1          13  Diag_Dom =   -7.45591074E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1          13  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1          13  Diag_Dom =   -7.98475072E-02
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.43866E+01 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1          14  Diag_Dom =  -0.140200570    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.13163E+02 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1          14  Diag_Dom =  -0.140200570    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35076E+02 0.35699E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.13163E+02 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1          14  Diag_Dom =  -0.134639651    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.13163E+02 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1          14  Diag_Dom =  -0.134639651    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35076E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.13163E+02 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1          14  Diag_Dom =  -0.140200570    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.13163E+02 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1          14  Diag_Dom =  -0.140200570    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35699E+02 0.35076E+02 0.43866E+01 0.92293E+02 0.92293E+02 0.13163E+02 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1          16  Diag_Dom =  -0.141176537    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.14966E+02 0.15232E+02 0.10281E+02 0.39378E+02 0.39378E+02 0.16908E+02 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1          16  Diag_Dom =  -0.141176537    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.14966E+02 0.15232E+02 0.10281E+02 0.39378E+02 0.39378E+02 0.16908E+02 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1          16  Diag_Dom =  -0.136412144    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.14966E+02 0.14966E+02 0.10281E+02 0.39378E+02 0.39378E+02 0.16908E+02 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1          16  Diag_Dom =  -0.136412144    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.14966E+02 0.14966E+02 0.10281E+02 0.39378E+02 0.39378E+02 0.16908E+02 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1          16  Diag_Dom =  -0.141176537    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.15232E+02 0.14966E+02 0.10281E+02 0.39378E+02 0.39378E+02 0.16908E+02 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1          16  Diag_Dom =  -0.141176537    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.15232E+02 0.14966E+02 0.10281E+02 0.39378E+02 0.39378E+02 0.16908E+02 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221
+ ngroup, nz=           1          18  Diag_Dom =  -0.459527552    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+   85 0.35318E+02 0.35942E+02 0.21023E+02 0.93856E+02 0.93856E+02 0.30119E+02 0.21216E+03
+ Assembly Number =           27
+  Numbers inside Assembly
+                       67   68   84   85
+ ngroup, nz=           1          18  Diag_Dom =   -2.81291828E-03
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  100 0.34415E+02 0.38140E+02 0.16207E+02 0.81802E+02 0.34452E+02 0.22769E+02 0.22695E+03
+ Assembly Number =           35
+  Numbers inside Assembly
+                       99  100  114  115
+ ngroup, nz=           1          18  Diag_Dom =  -0.459527552    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  145 0.35318E+02 0.35942E+02 0.21023E+02 0.93856E+02 0.93856E+02 0.30119E+02 0.21216E+03
+ Assembly Number =           43
+  Numbers inside Assembly
+                      129  130  144  145
+ ngroup, nz=           1          18  Diag_Dom =  -0.452330559    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  171 0.35318E+02 0.35318E+02 0.21023E+02 0.93856E+02 0.93856E+02 0.30119E+02 0.21278E+03
+ Assembly Number =           50
+  Numbers inside Assembly
+                      157  158  170  171
+ ngroup, nz=           1          18  Diag_Dom =  -0.452330559    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  193 0.35318E+02 0.35318E+02 0.21023E+02 0.93856E+02 0.93856E+02 0.30119E+02 0.21278E+03
+ Assembly Number =           56
+  Numbers inside Assembly
+                      181  182  192  193
+ ngroup, nz=           1          18  Diag_Dom =   -2.81285075E-03
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  208 0.38140E+02 0.34415E+02 0.16207E+02 0.34452E+02 0.81802E+02 0.22769E+02 0.22695E+03
+ Assembly Number =           60
+  Numbers inside Assembly
+                      199  200  208  209
+ ngroup, nz=           1          18  Diag_Dom =  -0.459527552    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  211 0.35942E+02 0.35318E+02 0.21023E+02 0.93856E+02 0.93856E+02 0.30119E+02 0.21216E+03
+ Assembly Number =           61
+  Numbers inside Assembly
+                      201  202  210  211
+ ngroup, nz=           1          18  Diag_Dom =  -0.459527552    
+ k,   (MAT_Tot(n, i, k + nn),i=1,6),MAT_Diag_Tot(n,k)
+  221 0.35942E+02 0.35318E+02 0.21023E+02 0.93856E+02 0.93856E+02 0.30119E+02 0.21216E+03
+ Assembly Number =           64
+  Numbers inside Assembly
+                      215  216  220  221

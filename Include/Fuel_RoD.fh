@@ -1,0 +1,73 @@
+
+c======================================================================c
+c          SKETCH-N version 0.95: Nodal Neutron Diffusion Code for     c
+c            Solving Steady-State & Kinetics Problems                  c
+c                                                                      c
+c             Moscow Engineering Physics Institute                     c
+c                Tokyo Institute of Technology                         c
+c              Japan Atomic Energy Research Institute                  c 
+c                                                                      c
+c       Author:  Vyacheslav G. Zimin                                   c
+c                                                                      c
+c                    (C) 1999 All Rights Reserved                      c
+c                                                                      c
+c                               NOTICE                                 c
+c                                                                      c
+c  Permission to use, copy, modify, and distribute this software and   c
+c  its documentation for any purpose and without fee is hereby granted c
+c  provided that the above copyright notice appear in all copies and   c
+c  that both the copyright notice and this permission notice appear in c
+c  supporting documentation.                                           c
+c                                                                      c
+c  Neither the Institutions  nor the Authors make any                  c
+c  representations about the suitability of this software for any      c
+c  purpose.  This software is provided ``as is'' without express or    c
+c  implied warranty.                                                   c
+c======================================================================c
+* Parameters Fuel Rod
+      include 'parameters.fh'
+
+      include 'units.fh'
+
+      INTEGER NN_FRD_TYPE
+      PARAMETER( NN_FRD_TYPE = 3)
+
+      INTEGER N_FRD_TYPE
+	REAL Alfa_Doppl
+	CHARACTER*3 FRD_DOPL_TYPE
+      common/fuel00a/ N_FRD_TYPE, Alfa_Doppl, FRD_DOPL_TYPE
+
+	LOGICAL FlagComputeGapConductance
+
+      common/fuel00b/
+     &    FlagComputeGapConductance
+
+      character*32 File_Fuel_Rod
+
+      common/fuel001/ File_Fuel_Rod
+
+      real Delta_RF(NN_FRD_FUEL, NN_FRD_TYPE), 
+     &     Delta_RC(NN_FRD_CLAD, NN_FRD_TYPE)
+      real Radius_Fuel(NN_FRD_FUEL+1,NN_FRD_TYPE), 
+     &     Radius_Clad(NN_FRD_CLAD+1,NN_FRD_TYPE), 
+     &     Radius_Int(NN_FRD_TOTAL, NN_FRD_TYPE)
+
+      common/fuel002/ Delta_RF, Delta_RC, 
+     &           Radius_Fuel, Radius_Clad, Radius_Int
+
+      real  Matr_FR(3,NN_FRD_TOTAL+2), RHS_FR(NN_FRD_TOTAL+2)
+      common /fuel003/  Matr_FR, RHS_FR
+
+      real Conduct_Gap(NN_FRD_TYPE), 
+     &     Power_Pin(NN_FRD_FUEL, NN_FRD_TYPE), 
+     &     Density_Fuel(NN_FRD_TYPE), Density_Clad(NN_FRD_TYPE)
+      common/fuel004/ Conduct_Gap,  
+     &                      Power_Pin,
+     &                      Density_Fuel, Density_Clad
+
+      real const_alfa_fuel(3,NN_FRD_TYPE), 
+     &     const_alfa_clad(4,NN_FRD_TYPE), 
+     &     const_cp_fuel(4,NN_FRD_TYPE),
+     &     const_cp_clad(2,NN_FRD_TYPE)
+      common /fuel005/  const_alfa_fuel, const_alfa_clad, 
+     &       const_cp_fuel, const_cp_clad

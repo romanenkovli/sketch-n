@@ -1,0 +1,13 @@
+*CD NMFAIL                                                              
+C
+CITJ+ (11/13/98)
+C
+CC    COMMON /NMFAIL/ S3                                                
+CC    COMMON /NMFAIL/ IFTP   ,I$A452 ,ITFL1  ,I$A453 ,NFL1   ,I$A454 ,  
+CC   1                NFL3   ,I$A455                                    
+C
+      COMMON /NMFAIL/ IFTP
+C
+CITJ- (11/13/98)
+C
+C

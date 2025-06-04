@@ -1,0 +1,17 @@
+! INPUT OF THE DATA VS. TIME
+! Reactor Power [MWt]
+TS001
+! Reactivity [$]
+TS002
+! SKETCH-N Time Step Size, [ms]
+TS003 0.001  
+! Average Doppler Fuel Temperature
+TD005 0 0 0
+! Maximum Fuel Centerline Temperature
+TM006 3
+! Location of the 3D Maximum Fuel Centerline Temperature
+TL006 3
+
+
+
+

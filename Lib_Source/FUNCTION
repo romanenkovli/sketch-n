@@ -1,0 +1,10 @@
+*CD FUNCTION                                                            
+C                                                                       
+C     MISCELLANEOUS INLINE FUNCTIONS                                    
+C                                                                       
+      STAR(QANTY,EXPNT) = EXP(EXPNT*DLOG(QANTY))                        
+      STARD(QANTY1,EXPNT1,QANTY2,EXPNT2)                                
+     *     =EXP(EXPNT1*DLOG(QANTY1)+EXPNT2*DLOG(QANTY2))                
+      STARSR(QANTY) = SQRT(SQRT(QANTY))                                 
+C                                                                       
+C                                                                       

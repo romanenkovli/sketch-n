@@ -1,0 +1,70 @@
+!==============================================================================!
+!                                   SKETCH-N                                   !
+!  Nodal Neutron Diffusion Code for Solving Steady-State and Kinetics Problems !
+!              Version 1.0 (c) Slava 2000 e-mail: na.vzimin@na-net.ornl.gov    !
+!      Date & Time of Calculation :  2 February 2007   0:16:04 am              !
+!==============================================================================!
+ A Comparison of the SKETCH Results with  Input/KOEBERG2D.ref             
+  PWR KOEBERG 2D 4-group Reference Solution                                     
+                      
+ SEMI-ANALYTICAL NODAL METHOD
+ 
+k_eff Reference        :   1.00795
+k_eff SKETCH-N         :   1.00835
+Error, [pcm]           :    39.
+
+Comparison of the 2D Power Distribution
+
+
+          1     2     3     4     5     6     7     8
+       ----  ----  ----  ----  ----  ----  ----  ----
+  1:      1     2     3     4     5     6     7     8
+  1:   1.01  1.09  1.04  1.16  1.13  1.21  0.96  0.83
+  1:   0.99  1.07  1.03  1.15  1.13  1.21  0.97  0.85
+  1:   -1.9  -1.9  -1.5  -1.4  -0.6  -0.2   1.0   1.7
+ 
+  2:      9    10    11    12    13    14    15    16
+  2:   1.09  1.03  1.13  1.11  1.24  1.06  1.04  0.64
+  2:   1.07  1.01  1.11  1.09  1.24  1.06  1.05  0.65
+  2:   -1.9  -1.6  -1.8  -1.1  -0.7   0.2   1.2   1.2
+ 
+  3:     17    18    19    20    21    22    23
+  3:   1.04  1.13  1.09  1.22  1.06  1.04  0.97
+  3:   1.03  1.11  1.08  1.21  1.06  1.04  0.98
+  3:   -1.5  -1.8  -1.2  -1.1  -0.3   0.6   1.4
+ 
+  4:     24    25    26    27    28    29    30
+  4:   1.16  1.11  1.22  1.04  1.00  0.98  0.65
+  4:   1.15  1.09  1.21  1.03  1.00  1.00  0.66
+  4:   -1.4  -1.1  -1.1  -0.4   0.2   1.5   0.5
+ 
+  5:     31    32    33    34    35    36
+  5:   1.13  1.24  1.06  1.00  0.79  0.67
+  5:   1.13  1.24  1.06  1.00  0.80  0.68
+  5:   -0.6  -0.7  -0.3   0.2   1.4   0.8
+ 
+  6:     37    38    39    40    41
+  6:   1.21  1.06  1.04  0.98  0.67
+  6:   1.21  1.06  1.04  1.00  0.68
+  6:   -0.2   0.2   0.6   1.5   0.8
+ 
+  7:     42    43    44    45
+  7:   0.96  1.04  0.97  0.65
+  7:   0.97  1.05  0.98  0.66
+  7:    1.0   1.2   1.4   0.5
+ 
+  8:     46    47
+  8:   0.83  0.64
+  8:   0.85  0.65
+  8:    1.7   1.2
+ 
+Average Error in Power Distribution, (abs*100):    1.0
+    RMS Error in Power Distribution, (abs*100):    1.1
+Maximum Error in Power Distribution, (abs*100):   -1.9
+Number of FA with the Maximum Error           :      9
+ 
+Maximum Reference Power Density               :   1.24
+Number of FA with the Maximum Reference Power :     13
+Maximum SKETCH-N  Power Density               :   1.24
+Number of FA with the Maximum SKETCH-N Power  :     13
+Error in Maximum Power Density       (abs*100):   -0.7

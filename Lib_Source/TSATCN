@@ -1,0 +1,6 @@
+*CD TSATCN                                                              
+C                                                                       
+      DIMENSION CEOSLP(40)                                              
+      COMMON /TSATCN/ AEOS14 ,CEOS1  ,CEOS2  ,CEOS3  ,CEOSLP            
+      COMMON /TSATCN/ IGAS   ,I$A699 ,ILIQ   ,I$A700                    
+C                                                                       

@@ -1,0 +1,134 @@
+!=====================================================================!
+!    Reading data from the "Cd-file.txt" for Ringhals-1 benchmark     !
+! for format see Appendix I of "Data for stability benchmark          !
+!    calculations Ringhals unit 1 cycles 14,15, 16 and 17"            !
+!             Slava (c) 25.V.1999                                     !
+!=====================================================================!
+      include 'units.fh'
+
+
+! MODULE XS RINGHALS-1
+
+! Parameter:
+      integer NR_FUEL_TYPE_M ! Maximum number of fuel types in the core
+      parameter (NR_FUEL_TYPE_M = 44) 
+
+      integer N_INV_FUEL_TYPE ! Maximum index of the fuel type used in XS table
+      parameter (N_INV_FUEL_TYPE = 200) 
+
+      integer N_XS !  number of XS in the table
+      parameter (N_XS = 8)
+
+      integer NE_M ! Maximum number of burnup entries
+      parameter (NE_M = 30)
+
+      integer NV_M ! Maximum  number of void entries
+      parameter (NV_M = 5)
+
+      integer NC_M ! Maximum number of void history entries!
+      parameter(NC_M = 5)
+
+! End Parameters
+
+! Data:
+
+      integer NR_FUEL_TYPE ! Number of fuel types in the XS table;
+
+      integer IND_FTYP(N_INV_FUEL_TYPE) ! Index of the fuel type to convert
+! from Ringhals numbering into SKETCH sequential numbering;
+
+
+! NAMN - name of the table entries
+      character*6 NAMN(N_XS)
+ 
+! NE - No. of burnup entries 
+! NV - No. of void entries
+! NC - No. of void history entries
+      integer NE(NR_FUEL_TYPE_M),
+     &  NV(NR_FUEL_TYPE_M), NC(NR_FUEL_TYPE_M),
+     &  FTYPE(NR_FUEL_TYPE_M, 18)
+
+! RSCALE - scaling factor; Physical value = RSCALE*(Table Value)
+      real  RSCALE(N_XS,NR_FUEL_TYPE_M) 
+
+! BENTRY - burnup entries
+      real BENTRY(NE_M,NR_FUEL_TYPE_M)
+! CENTRY - conversion history entries 
+      real CENTRY(NC_M,NR_FUEL_TYPE_M)
+! VENTRY - void entries
+      real VENTRY(NV_M,NR_FUEL_TYPE_M)
+
+! XS_R - Cross Section - three-dimensional table  (NE, NV, NC)
+
+      real XS_R(N_XS, NE_M, NV_M, NC_M, NR_FUEL_TYPE_M)
+
+      common/xs_tableAAR/  RSCALE, BENTRY, CENTRY, VENTRY, XS_R
+
+      common/xs_tableAAI/ NR_FUEL_TYPE, IND_FTYP,  NE, NV, NC, 
+     &    FTYPE
+
+      common/xs_tableAAC/ NAMN
+
+! XS Module
+
+
+! DOXESH Module
+
+! parameters:
+
+      integer N_FT ! number of the point for fuel temperature
+      integer NC_DOPPLER ! number of Doppler Coefficients
+      integer NC_XE ! number of coefficients for XE
+      integer NC_SSHP ! number of the coefficients for CR history
+      parameter (N_FT = 6, NC_DOPPLER = 5, NC_XE = 5, NC_SSHP = 5)
+
+! POWDEN - power density at which table have been generated 
+      real powden(NR_FUEL_TYPE_M)
+! U_Weight - weight of uranium 
+      real U_Weight(NR_FUEL_TYPE_M)
+! Temp_Fuel_Nom - fuel temperature at which table has been generated
+      real Temp_Fuel_Nom(NR_FUEL_TYPE_M) 
+! Temp_Fuel - fuel temperature (K) at average planar lnera heat generation 
+!   rate 0 - 50 kW/m (+10)
+      real Temp_Fuel(N_FT, NR_FUEL_TYPE_M) 
+! Doppl_Coeff - coefficients for doppler effect on reactivity
+      real Doppl_Coeff(NC_Doppler, NR_FUEL_TYPE_M) 
+! Sigma_Xe - coefficients for microscopic xenon thermal absorption xs
+      real Sigma_Xe(NC_Xe, NR_FUEL_TYPE_M)
+! SSHP - coefficients for CR history model 
+      real SSHP(NC_SSHP,  NR_FUEL_TYPE_M)
+  
+      common /xs_table002/  powden, U_Weight, Temp_Fuel_Nom, 
+     &        Temp_Fuel, Doppl_Coeff, Sigma_Xe, SSHP
+
+! End DOXESH Module
+
+! DXSEC Module:  Differential CR Cross Sections
+      integer N_CR_TYPE ! Number of control rod types
+      parameter (N_CR_TYPE = 2)
+      integer N_FDCR ! number of full set of the differential 
+!                        CR cross section
+      parameter (N_FDCR = 2)
+
+      real RSCALE_DFSX(N_FDCR, NR_FUEL_TYPE_M, N_CR_TYPE)
+   
+! differential cross section for SA2 and nuSF2
+      real D_FXS(N_FDCR, NE_M, NV_M, NC_M, NR_FUEL_TYPE_M, N_CR_TYPE)
+
+! differential cross section for everything else
+
+      integer N_DCR ! number of simple differential cross-sections
+      parameter (N_DCR = 6)
+
+      real D_XS(N_DCR, NR_FUEL_TYPE_M, N_CR_TYPE)
+
+      character*6 NAME_FDCR(N_FDCR), NAME_DCR(N_DCR)
+
+      common /xs_table003/ RSCALE_DFSX, D_FXS, D_XS, 
+     &    NAME_FDCR, NAME_DCR
+     
+
+! End DXSEC Module
+
+      
+     

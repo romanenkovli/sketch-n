@@ -1,0 +1,14 @@
+import os
+
+dbg = 1
+
+env = Environment(ENV=os.environ)
+if dbg:
+    env.Append(LINKFLAGS=["-g"])
+env.Append(CPPPATH=["."])
+env.Append(F90FLAGS=["-I.","-Idbg"])
+dr = "dbg" if dbg else "rel"
+prg = env.SConscript("SConscript", "env", variant_dir=dr, duplicate=0)
+#env.Install(".",prg)
+
+#env.Command("res",prg,"./$SOURCE")

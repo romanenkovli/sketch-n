@@ -1,0 +1,18 @@
+*CD IOUNITS                                                             
+C
+CITJ+ (11/13/98)
+C
+CC    COMMON /UNITS/  CARD   ,IBFADD ,I$A419 ,IBFADG ,I$A420 ,IBFADR ,  
+CC   1                I$A421 ,IBFLND ,I$A422 ,IBFLNG ,I$A423 ,IBFLNR ,  
+CC   2                I$A424 ,IDOUT  ,I$A425 ,IGOUT  ,I$A426 ,IMOUT  ,  
+CC   3                I$A427 ,IN     ,I$A428 ,INPROC ,I$A429 ,IODONE ,  
+CC   4                I$A430 ,IOERR  ,I$A431 ,IOSKIP ,I$A432 ,IOUT   ,  
+CC   5                I$A433 ,IRSTRT ,I$A434 ,ITTY   ,I$A435 ,LCMCPD ,  
+CC   6                I$A436                                            
+CC    DIMENSION CARD(12)                                                
+C
+      COMMON /UNITS/  IMOUT  
+C
+CITJ- (11/13/98)
+C
+C                                                                       

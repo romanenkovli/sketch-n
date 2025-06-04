@@ -1,0 +1,105 @@
+!======================================================================
+! PARAMETERS FOR IAEA-2D VVER (No Reflector)  BENCHMARK               !
+! (c) Slava 23 November 2000                                          !
+!======================================================================
+! GeoMTry Module                                                      !
+!  N_POLY - number of the bundles (assemblies) in the reactor;        !
+!  NH - number of the nodes in radial (X-Y) plane                     !
+!       with 1 node per assembly NH = N_POLY;                         !
+!  NZR - number of axial layers defining materail composition         !
+!     of the bundle                                                   !
+!  NZ - number of axial lalers used for the calculations              !
+!  NXR - maximum number of bundles in X directions                    !
+!  NX - maximum number of nodes in X direction                        !
+!  NYR - maximum number of bundles in Y directions                    !
+!  NY - maximum number of nodes in Y direction                        !
+!  NCHM - maximum number of nodes per bundle (assembly)               !
+!       in X-Y plane                                                  !
+!  NDD - reactor geometry dimensions                                  !
+!    (3D calculations NDD = 3; 2D calculations NDD = 2 ;              !
+!     1D calculations NDD = 3)                                        !
+!  N_BUNDLE_TYPE - number of different bundle types                   !
+!----------------------------------------------------------------------
+      INTEGER N_POLY, NH, NZR, NZ, NXR, NYR, NX, NY, &
+               NCHM, NDD,N_BUNDLE_TYPE, NDIR
+
+      PARAMETER (N_BUNDLE_TYPE = 4)
+      PARAMETER (N_POLY   = 127, NH = 127 ) ! 
+      PARAMETER (NZR = 1,   NZ = 1 )
+      PARAMETER (NXR = 13,   NYR = 13 )
+      PARAMETER (NX  = 13, NY  = 13 )
+      PARAMETER (NCHM = 1)
+      PARAMETER (NDD = 3)
+      PARAMETER  (NDIR = 4)
+!-----------------------------------------------------------------------
+! End GeoMTry Module                                                   ! 
+!=======================================================================
+! TH_Model                                                             !
+!   NP_Reactor_Core - number of fuel bundles in the reactor core       !
+!   NZ_Core - number of axial layers in the reactor core (planes)      !
+!   NN_FRD_FA - number of the equivalent fuel rods per  fuel assembly  ! 
+!   NN_FA_TYPE - number of the fuel assembly types                     !
+!-----------------------------------------------------------------------
+         integer NP_Reactor_Core, NZR_Core, NN_FRD_FA, NN_FA_TYPE
+         parameter (NP_Reactor_Core = 127, NZR_Core = 1 , &
+            NN_FRD_FA = 1, NN_FA_TYPE = 1)
+!-----------------------------------------------------------------------
+! End TH_Model                                                         !
+!=======================================================================
+! XS Module (Cross Section & Neutron Kinetics Constant)                !
+!   NG - number of neutron energy groups                               !
+!   NNODE number of material compositions (dimension of the XS arrays) !
+!   MD - number of delayed neutron groups                              !
+!   N_FEEDBACKS - number of feedbacks (boron concentration, moderator  !
+!    temperature, moderator density or void, doppler fuel temperature) !
+!-----------------------------------------------------------------------
+      INTEGER NNODE, NG, MD, N_FEEDBACK, MH
+      PARAMETER(NNODE = 4, NG = 2)
+      PARAMETER(MD = 1)
+      PARAMETER(N_FEEDBACK = 4)
+      PARAMETER(MH = 11) 
+!-----------------------------------------------------------------------
+! End End TH_Model                                                     !
+!=======================================================================
+! CRD control rod Module                                               !
+!     NN_CRod_Comp - Number of Control Rod Compositions                !
+!     NN_CRod -  Number of Control Rods                                !
+!     NN_CRod_El -  Number of the Rod Materials (Absorber + Driver = 2)!
+!     NN_CRod_Type - Number of Control Rod Types                       !
+!     NN_Crod_Bundle - Number of the Bundles covered by CR             !
+!                               ("PWR" - 1, "BWR" - 4)                 !
+!-----------------------------------------------------------------------
+      INTEGER NN_CRod, NN_CRod_Comp, NN_CRod_El, NN_CRod_Type, &
+       NN_Crod_Bundle
+      PARAMETER (NN_CRod_El = 1, NN_CRod = 1, NN_CRod_Comp = 1,&
+       NN_CRod_Type = 1, NN_Crod_Bundle = 1 ) 
+!-----------------------------------------------------------------------
+! End CRD control rod Module                                           !
+!=======================================================================
+! Fuel RoD (FRD) Heat Conduction Model                                 !
+!     NN_FRD_FUEL - Number of the heat conduction nodes in the fuel    !
+!     NN_FRD_CLAD - Number of the heat conduction nodes in the cladding!
+!     NN_FRD_TOTAL - Total number of the heat conduction nodes         !
+!                     in the fuel rod                                  !
+!-----------------------------------------------------------------------
+      INTEGER NN_FRD_FUEL, NN_FRD_CLAD, NN_FRD_TOTAL
+      PARAMETER ( NN_FRD_FUEL=1, NN_FRD_CLAD = 1,&
+                NN_FRD_TOTAL = NN_FRD_FUEL + NN_FRD_CLAD )
+!-----------------------------------------------------------------------
+! End Fuel RoD (FRD) Heat Conduction Model                             !
+!=======================================================================
+! PVM Interface Module for TRAC                                        !
+!  NN_RT_HC_TRAC-Number of nodes of heat conduction R-T spatial mesh   !
+!  NN_RT_FD_TRAC-Number of nodes of fluid dynamics R-T spatial mesh    !
+!  NN_Z_HC_TRAC-Number of axial layers of heat conduction spatial mesh !
+!  NN_Z_FD_TRAC-Number of axial layers of fluid dynamics spatial mesh  !
+!-----------------------------------------------------------------------
+      INTEGER NN_RT_HC_TRAC, NN_RT_FD_TRAC, NN_Z_HC_TRAC, NN_Z_FD_TRAC 
+      PARAMETER ( NN_Z_HC_TRAC = 1, NN_Z_FD_TRAC = 1,&
+                   NN_RT_HC_TRAC = 1, NN_RT_FD_TRAC = 1)
+!-----------------------------------------------------------------------
+! End PVM Interface Module for TRAC                                    !
+!=======================================================================
+!                     THAT'S ALL                                       !
+!=======================================================================
+

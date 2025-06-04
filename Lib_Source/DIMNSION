@@ -1,0 +1,18 @@
+*CD DIMNSION                                                            
+C
+CITJ+ (11/13/98)
+C
+CC    COMMON /DIMEN/  IFREE  ,I$A242 ,JNVSSL ,I$A243 ,LAST   ,I$A244 ,  
+CC   1                LENBD  ,I$A245 ,LENDIM ,I$A246 ,LENTBL ,I$A247 ,  
+CC   2                LFREE  ,I$A248 ,LLAST  ,I$A249 ,LVER   ,I$A250 ,  
+CC   3                NCOMP  ,I$A251 ,NCOMPT ,I$A252 ,NJNMX  ,I$A253 ,  
+CC   4                NJNT   ,I$A254 ,NJUN   ,I$A255 ,NLOOPS ,I$A256 ,  
+CC   5                NMVSSL ,I$A257 ,NPX    ,I$A258 ,NSTGJ  ,I$A259 ,  
+CC   6                NTHM   ,I$A260 ,NTHM1D ,I$A261 ,NTHM3D ,I$A262 ,  
+CC   7                NUMTCR ,I$A263 ,NVCON  ,I$A264                    
+C
+      COMMON /DIMEN/  NTHM
+C
+CITJ- (11/13/98)
+C
+C                                                                       

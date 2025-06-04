@@ -1,0 +1,7 @@
+! Steady-State Distribution
+! Reactor Power [MWt]
+MS001
+! Power Distribution
+MD001 0.0
+
+

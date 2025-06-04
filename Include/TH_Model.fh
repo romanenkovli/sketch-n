@@ -1,0 +1,136 @@
+c======================================================================c
+c          SKETCH-N version 0.95: Nodal Neutron Diffusion Code for     c
+c            Solving Steady-State & Kinetics Problems                  c
+c                                                                      c
+c             Moscow Engineering Physics Institute                     c
+c                Tokyo Institute of Technology                         c
+c              Japan Atomic Energy Research Institute                  c 
+c                                                                      c
+c       Author:  Vyacheslav G. Zimin                                   c
+c                                                                      c
+c                    (C) 1999 All Rights Reserved                      c
+c                                                                      c
+c                               NOTICE                                 c
+c                                                                      c
+c  Permission to use, copy, modify, and distribute this software and   c
+c  its documentation for any purpose and without fee is hereby granted c
+c  provided that the above copyright notice appear in all copies and   c
+c  that both the copyright notice and this permission notice appear in c
+c  supporting documentation.                                           c
+c                                                                      c
+c  Neither the Institutions  nor the Authors make any                  c
+c  representations about the suitability of this software for any      c
+c  purpose.  This software is provided ``as is'' without express or    c
+c  implied warranty.                                                   c
+c======================================================================c
+      INCLUDE 'parameters.fh'
+
+      INCLUDE 'units.fh'
+
+      INTEGER N_FA_TYPE, 
+     &        FRD_FA_TYPE(NN_FRD_FA, NN_FA_TYPE) 
+      CHARACTER*3 FRD_DOPL_TYPE
+      CHARACTER*5 TH_COOL_TYPE 
+	LOGICAL Flag_flow_Rate_Core
+      
+      COMMON /therm00a/ N_FA_TYPE, FRD_FA_TYPE,
+     &                  FRD_DOPL_TYPE, TH_COOL_TYPE,Flag_flow_Rate_Core  
+
+      CHARACTER*32 File_TH_Core  ! , File_TH_In, File_TH_Out
+!      integer   I_File_TH_In, I_File_TH_Out
+
+      COMMON /therm001/ File_TH_Core !, File_TH_In, File_TH_Out,
+!     &                     I_File_TH_In, I_File_TH_Out
+
+      REAL Temp_Cool(NZR, NP_Reactor_Core), 
+     &        Temp_Doppl(NZR, NP_Reactor_Core),
+     &        Ro_Cool(NZR, NP_Reactor_Core)
+
+      COMMON /therm002/ Temp_Cool, Temp_Doppl,
+     &        Ro_Cool
+
+      REAL    Temp_FR(NN_FRD_TOTAL+2, NN_FRD_FA, NZR, NP_Reactor_Core) 
+      COMMON /therm003/ Temp_FR
+
+      REAL Temp_Cool_Inlet,  Pressure,
+     &     Flow_rate(NN_FA_TYPE), Diam_Eq(NN_FA_TYPE), 
+     &     Pow_Reynolds, Pow_Prandtl,
+     &     Const_DB, Gamma_HF(NN_FRD_FA, NN_FA_TYPE), 
+     &     Flow_Rate_Core(NP_Reactor_Core),
+     &     TH_Dopl_Mix(NN_FRD_FA, NN_FA_TYPE),
+     &     Pow_FRD_Assm(NN_FRD_FA, NN_FA_TYPE)
+
+
+      COMMON/therm004/ Temp_Cool_Inlet,  Pressure,
+     &     Flow_rate, Diam_Eq, Pow_Reynolds, Pow_Prandtl,
+     &     Const_DB, Gamma_HF,  
+     &     Flow_Rate_Core,
+     &     Pow_FRD_Assm, TH_Dopl_Mix
+
+      REAL  Pow_Core(NZR, NP_Reactor_Core)
+
+      COMMON /therm005/ Pow_Core
+
+      REAL e_temp_max(7), hz(NZR), Cool_Heating
+
+      COMMON/therm006/ e_temp_max, hz, Cool_Heating
+
+      REAL Temp_Fuel_Max
+      COMMON /therm006/ Temp_Fuel_Max
+
+      CHARACTER*5 Steam_Table
+	parameter(Steam_Table = "TRAC") ! JAERI
+
+      integer NZ_Reactor_Core(NZR)
+      COMMON /therm008/ NZ_Reactor_Core
+
+* Data for Restart 
+
+      REAL Old_Temp_Cool(NZR, NP_Reactor_Core), 
+     &        Old_Temp_Doppl(NZR, NP_Reactor_Core),
+     &        Old_Ro_Cool(NZR, NP_Reactor_Core)
+
+      COMMON /therm009/ Old_Temp_Cool, Old_Temp_Doppl,
+     &        Old_Ro_Cool
+
+      REAL Old_Temp_FR(NN_FRD_TOTAL+2, NN_FRD_FA, NZR, NP_Reactor_Core) 
+     
+      COMMON /therm010/ Old_Temp_FR
+
+* End data for Restart
+
+* Fuel Enthalpy
+
+      REAL Temp_Fuel_Av(NN_FRD_FA, NZR, NP_Reactor_Core ),
+     &     Fuel_Enthalpy(NN_FRD_FA, NZR, NP_Reactor_Core ) 
+      COMMON /therm011/ Fuel_Enthalpy, Temp_Fuel_Av
+
+* End Module Fuel Enthalpy
+
+! Conversion of the T/H variables into feedbacks ! TEMPORALY
+
+      real Conv_Cool_Dens, Conv_Fuel_Temp, Conv_Cool_Temp
+      COMMON /sketch142/ Conv_Cool_Dens, Conv_Fuel_Temp, Conv_Cool_Temp
+
+
+! End of Conversion of the T/H variables into feedbacks
+      REAL ratio_s_to_d(NN_FA_TYPE)
+	common /therm012/  ratio_s_to_d 
+
+! Average FR temperature based on the Fuel Assembly type
+      REAL    Temp_FR_AVR(NN_FRD_TOTAL+3, NN_FRD_FA, NZR, NN_FA_TYPE),
+     &          POWER_FRD_AVR(NN_FRD_FA, 0:NZR, NN_FA_TYPE),
+     &          POWER_FRD_TOTAL
+      COMMON /therm015/ Temp_FR_AVR, POWER_FRD_AVR, POWER_FRD_TOTAL 
+
+! Data used in the coupling
+	REAL  Rel_Flow_Area(NN_FA_TYPE), 
+     &  S_Fuel_per_Assembly(NN_FRD_FA, NN_FA_TYPE)
+	
+	COMMON /therm016/ Rel_Flow_Area, 
+     &  S_Fuel_per_Assembly
+  
+	INTEGER  TH_TYPE_CORE(NP_REACTOR_CORE), N_FRD_FA(NN_FA_TYPE)  
+	COMMON /therm017/   TH_TYPE_CORE, N_FRD_FA
+
+ 

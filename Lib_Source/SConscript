@@ -1,0 +1,25 @@
+
+Import('env')
+l_env = env.Clone()
+l_env.Append(FORTRANFLAGS=["-fdollar-ok"])
+src=["SIGMA.f",
+"BLKDAT.f",
+"FPROP.f",
+"SATPRS.f",
+"SATTMP.f",
+"THERMO.f",
+"CPLL.f",
+"HEV.f",
+"PF1STEAM.f",
+"SETEOS.f",
+"STEAM_SUB.f",
+"CPVV1.f",
+"RHOLIQ.f",
+"VISCL.f",
+"SATDER.f",
+"VISCV.f",
+"THCL.f",
+"THCV.f"]
+
+prg = l_env.Library("props_x",src)
+Return("prg")

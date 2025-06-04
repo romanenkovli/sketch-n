@@ -1,0 +1,81 @@
+      integer*4  YMNCnarg              !INTERP.ARG.NUMBER
+      integer*4  YMNCnfnum             !INTERP. PARAM.'S NUMBER
+      integer*4  YMNCnsort             !PARAM.'S SORTS NUMBER
+      integer*4  YMNCrsort             !REDUCING PARAM.'S SORTS NUMBER
+      integer*4  YMNCksdimtotal        !COEFF.ARR.DIMENSION FOR EACH PARAM.SORT
+      integer*4  YMNCmultnb            !INTERP.COEF.NUM.OF EXT.MULT.FACTOR
+      integer*4  YMNCmultint           !NUM.OF INTERNAL MULT.FACTORS TYPES OR 0
+      integer*4  YMNCsdimtotal         !ARG.PNT.VAL.ARRAY DIMENSION
+      integer*4  YMNCpntnum            !TOTAL NUMBER OF POINTS
+ 
+      parameter
+     &          (YMNCnarg       =       6)
+      parameter
+     &          (YMNCnfnum      =      22)
+      parameter
+     &          (YMNCnsort      =      86)
+      parameter
+     &          (YMNCrsort      =      77)
+      parameter
+     &          (YMNCksdimtotal =   81491)
+      parameter
+     &          (YMNCmultnb     =       1)
+      parameter
+     &          (YMNCmultint    =       1)
+      parameter
+     &          (YMNCsdimtotal  =   13639)
+      parameter
+     &          (YMNCpntnum     =      33)
+ 
+      integer*4  YMNCnnodd     (YMNCnarg)
+      integer*4  YMNCredarg    (YMNCnfnum)
+      integer*4  YMNCreduce    (YMNCnfnum*YMNCnarg)
+      integer*4  YMNCnnodd1    (YMNCnfnum*YMNCnarg)
+      integer*4  YMNCksoff     (YMNCnfnum)
+      integer*4  YMNCksdimarr  (YMNCnfnum)
+      integer*4  YMNCksnargarr (YMNCnfnum)
+      integer*4  YMNCsortoff   (YMNCrsort)
+      integer*4  YMNCsortind   (YMNCnsort)
+      integer*4  YMNCemfl
+      integer*4  YMNCerr
+      integer*4  YMNCdfnum     (YMNCnfnum)
+      integer*4  YMNCdflag     (YMNCnfnum)
+      integer*4  YMNCinterv    (YMNCnarg)
+      integer*4  YMNCstepfl
+ 
+      real*4     YMNCostep     (YMNCnarg)
+      real*4     YMNCfval      (YMNCnarg)
+      real*4     YMNClval      (YMNCnarg)
+      real*4     YMNCksarr     (YMNCrsort*YMNCksdimtotal)
+      real*4     YMNCextmultarr(YMNCrsort*YMNCnfnum*YMNCmultnb)
+      real*4     YMNCintmultarr(YMNCrsort*YMNCmultint*YMNCnfnum)
+      real*4     YMNCuzlval    (YMNCpntnum)
+      real*4     YMNCxof       (YMNCnarg)
+ 
+      common
+     &       /YMNC_int100/
+     &                  YMNCnnodd      , !INTERP.PNT.NUMBER
+     &                  YMNCredarg     , !PARAM.'S ARG.NUMBER SUBJECT TO REDUCE
+     &                  YMNCreduce     , !REDUCING (0 - NO RED.,>0 - RED.)
+     &                  YMNCnnodd1     , !INTERP.PNT.NUM.-1 FOR EACH PARAM.
+     &                  YMNCksoff      , !PARAM.'S OFFSETS IN THE COEFF.ARRAY
+     &                  YMNCksdimarr   , !EACH PARAM.ARR.DIMENSION
+     &                  YMNCksnargarr  , !COEFF."2**ARG.NUM." FOR EACH PARAM.
+     &                  YMNCsortoff    , !PARAM.'S SORT OFFSET ARRAY
+     &                  YMNCsortind    , !PARAM.'S SORT INDEXES ARRAY
+     &                  YMNCemfl       , !EXT.MULT.FACTOR PRESENCE FLAG
+     &                  YMNCerr        , !ERROR FLAG FOR OBJECT YMNC
+     &                  YMNCdfnum      , !DERIVATIVE'S NUMBER FOR EACH PAR.
+     &                  YMNCdflag      , !DERIVATIVE'S POSITION FOR EACH PAR.
+     &                  YMNCinterv     , !CUR.ARG.INTERVALES INDEXES
+     &                  YMNCstepfl       !STEP FLAG
+      common
+     &       /YMNC_rea100/
+     &                  YMNCostep      , !RECIPROCAL ARG.STEP
+     &                  YMNCfval       , !FIRST INTERP.PNT.VALUES
+     &                  YMNClval       , !LAST INTERP.PNT.VALUES
+     &                  YMNCksarr      , !INTERP.COEFF.ARRAY
+     &                  YMNCextmultarr , !EXT.MULT.FACTORS ARRAY
+     &                  YMNCintmultarr , !INT.MULT.FACTORS ARRAY
+     &                  YMNCuzlval     , !ARG.POINTS VALUES ARRAY
+     &                  YMNCxof          !CUR.INTERVAL'S OFFSET

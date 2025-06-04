@@ -1,0 +1,38 @@
+*CD CONTRLLR                                                            
+C
+CITJ+ (11/13/98)
+C
+CC    COMMON /CONTRL/ DAMMC  ,DAMX   ,DELT   ,DELTHT ,DIFMIN ,DPRMX  ,  
+CC   1                DTLMX  ,DTMAX  ,DTMIN  ,DTO    ,DTRMX  ,DTSMX  ,  
+CC   2                DTVMX  ,EPS1   ,EPS2   ,EPSI   ,EPSO   ,EPSP   ,  
+CC   3                EPSS   ,ETIME  ,HTLOSI ,HTLOSO ,ODELT  ,TEND   ,  
+CC   4                TIMEC  ,TIMET  ,VARER  ,VCMN   ,VCMX   ,VMAXO  ,  
+CCCC 5                VMAXT  ,VMCON  ,VMNEW  ,VMOLD                     
+CC   5                VMAXT  ,VMCON  ,VMNEW  ,VMOLD  ,RFAT   ,RVMAX     
+CC    COMMON /CONTRL/ DSTEP  ,I$A068 ,IADDED ,I$A069 ,ICCMX  ,I$A070 ,  
+CC   1                ICMP   ,I$A071 ,ICP    ,I$A072 ,IEOS   ,I$A073 ,  
+CC   2                IFPREP ,I$A074 ,IGEOM3 ,I$A075 ,IITMAX ,I$A076 ,  
+CC   3                IM100  ,I$A077 ,IM100X ,I$A078 ,IMFR   ,I$A079 ,  
+CC   4                IPAK   ,I$A080 ,IPAKON ,I$A081 ,IPKPMP ,I$A082 ,  
+CC   5                IRSTFL ,I$A083 ,ISOLUT ,I$A084 ,ISSFLG ,I$A085 ,  
+CC   6                INVAN  ,I$A086 ,ISTDY  ,I$A087 ,ISTTC  ,I$A088 ,  
+CC   7                ITMIN  ,I$A089 ,ITPAKO ,I$A090 ,KCCMX  ,I$A091 ,  
+CC   8                LCMPTR ,I$A092 ,LEVSTG ,I$A093 ,LLVFLG ,I$A094 ,  
+CC   9                NCMN   ,I$A095 ,NCMX   ,I$A096 ,NCRG   ,I$A097 ,  
+CC   1                NDIA1  ,I$A098 ,NDIA3  ,I$A099 ,NFRC1  ,I$A100 ,  
+CC   2                NFRC3  ,I$A101 ,NITAV  ,I$A102 ,NITMN  ,I$A103 ,  
+CC   3                NITMX  ,I$A104 ,NIVSMN ,I$A105 ,NIVSMX ,I$A106 ,  
+CC   4                NSEND  ,I$A107 ,NSEO   ,I$A108 ,NPKSRC ,I$A109 ,  
+CC   5                NSMN   ,I$A110 ,NSMX   ,I$A111 ,NSPL   ,I$A112 ,  
+CC   6                NSPU   ,I$A113 ,NSSO   ,I$A114 ,NSTP   ,I$A115 ,  
+CC   7                NSVSMN ,I$A116 ,NSVSMX ,I$A117 ,OITMAX ,I$A118 ,  
+CCCC 8                SITMAX ,I$A119 ,STDYST ,I$A120 ,TRANSI ,I$A121    
+CC   8                SITMAX ,I$A119 ,STDYST ,I$A120 ,TRANSI ,I$A121 ,  
+CC   9                JFAT   ,JFAT$1                                    
+CC    INTEGER DSTEP  ,OITMAX ,SITMAX ,STDYST ,TRANSI                    
+C
+      COMMON /CONTRL/ IEOS  
+C
+CITJ- (11/13/98)
+C
+C                                                                       

@@ -1,0 +1,43 @@
+!  io_unit - unit number to read & write the SKETCH files
+!  out_unit_err - unit number to  write the error messages into
+!                   the file "Output/Errors.msg"
+
+      integer io_unit,  out_unit_err
+      parameter (io_unit = 89, out_unit_err = 90 )
+
+      logical Error_Message_on_Screan
+      parameter(Error_Message_on_Screan = .True.)      
+
+      integer LEN_INP_IDENT  
+      parameter (LEN_INP_IDENT = 12)
+
+      integer LENGTH_OUTPUT
+      parameter (LENGTH_OUTPUT = 80)
+
+
+      real pi, eps_round_off
+      parameter(pi=3.14159)
+      parameter(eps_round_off = 1.E-05)
+      real BIG_VALUE, SMALL_VALUE
+      parameter (BIG_VALUE = 1.E+30, SMALL_VALUE=1.E-30) 
+
+!=======================================================================
+! OUTput Module                                                        !
+!     NN_OUT_VIEW_MAX - maximum number of the time step intervals      !
+!             3D & 2D power distribution                               !
+!-----------------------------------------------------------------------
+      INTEGER NN_OUT_VIEW_MAX
+      PARAMETER (NN_OUT_VIEW_MAX = 10)
+
+      logical DEBUG
+      parameter (DEBUG = .False.)      
+
+!======================================================================!
+! I_BOUND_NODE - flag of the boundary node in the arrays LA and NEIB   !  
+!======================================================================!
+      INTEGER I_BOUND_NODE
+      PARAMETER (I_BOUND_NODE=-1) 	
+!======================================================================!
+! N_ISOTOPE - Number of isotopes in the burnup model                   !  
+!======================================================================!
+      INTEGER, PARAMETER :: N_ISOTOPE = 4   

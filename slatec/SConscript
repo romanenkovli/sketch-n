@@ -1,0 +1,5 @@
+Import('env')
+l_env = env.Clone()
+src=l_env.Glob("*.f")
+prg = l_env.Library("slatec",src)
+Return("prg")

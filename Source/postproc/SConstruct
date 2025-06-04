@@ -1,0 +1,18 @@
+import os
+
+dbg = 0
+
+env = Environment(ENV=os.environ)
+env.Append(CPPFLAGS=["-std=c++17","-Wall", "-fexceptions","-g" if dbg else "-O2"])
+if dbg:
+    env.Append(LINKFLAGS=["-g"])
+    env.Append(F90FLAGS=["-g"])
+env.Append(CPPPATH=["."])
+env.Append(F90FLAGS=["-I."])
+dr = "dbg" if dbg else "rel"
+obj = ["PostProc_NT.f90", "PostProc_MOD.f90"]
+exe = env.Program("postproc",obj)
+inst = env.Install("../..",exe)
+Default(inst)
+
+#env.Command("res",prg,"./$SOURCE")

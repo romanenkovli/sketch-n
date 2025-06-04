@@ -1,0 +1,748 @@
+      include 'parameters.fh'
+!======================================================================c
+!          SKETCH-N version 0.95: Nodal Neutron Diffusion Code for     c
+!            Solving Steady-State & Kinetics Problems                  c
+!                                                                      c
+!             Moscow Engineering Physics Institute                     c
+!                Tokyo Institute of Technology                         c
+!              Japan Atomic Energy Research Institute                  c 
+!                                                                      c
+!       Author:  Vyacheslav G. Zimin                                   c
+!                                                                      c
+!                    (C) 1999 All Rights Reserved                      c
+!                                                                      c
+!                               NOTICE                                 c
+!                                                                      c
+!  Permission to use, copy, modify, and distribute this software and   c
+!  its documentation for any purpose and without fee is hereby granted c
+!  provided that the above copyright notice appear in all copies and   c
+!  that both the copyright notice and this permission notice appear in c
+!  supporting documentation.                                           c
+!                                                                      c
+!  Neither the Institutions  nor the Authors make any                  c
+!  representations about the suitability of this software for any      c
+!  purpose.  This software is provided ``as is'' without express or    c
+!  implied warranty.                                                   c
+!======================================================================c
+
+      include 'units.fh'
+
+! Some Additiaonal Parameters
+      integer NXYM
+      parameter (NXYM = MAX0(NX,NY))
+      integer NXYZ_MAX
+      parameter (NXYZ_MAX = MAX0(NXYM,NZ))
+
+      integer N_TOT 
+      parameter (N_TOT = NH*NZ)
+
+        INTEGER N_LINE_PROBLEM_TITLE
+        PARAMETER (N_LINE_PROBLEM_TITLE = 5)
+
+! NE - number of the node faces in the radial plane                   !
+! NE_T - number of the node faces in 3D                               !
+      INTEGER NE, NE_T 
+      parameter (NE = (NDIR-1)*2, NE_T = NDIR*2 )           
+
+! End of parameters
+
+! Data of the Geometry Module
+      character*4 gmt_crd_type
+! Data related to HEX-Z geometry
+      INTEGER NHR, NV, N_TOT_DIR(NDIR)
+      integer  poly_out(N_POLY,NCHM), npoly(NYR,NXR), npx(NXR),&
+                npy(NYR),npz(NZR),n_fine(NY,NX),la(NH,NE+1),&
+                np_out(0:NH),ns_out(NZ), nrb(2),&
+                nprb(NH,2), n_b(NYR),n_e(NYR), &
+                Index_Neib(NDIR,2), &
+                Neib(NE_T, N_TOT), Neib_REP_STR(NE_T, N_TOT), &
+                Numb(N_TOT, NDIR), &
+                N_Coord(N_POLY,2),&
+                n_core(N_POLY)
+      integer Index_Left_Interface(N_TOT, NDIR),&
+             Index_Left_Interface_Poly(N_POLY, NZR, NDIR)
+!      INTEGER   n_out_faces(NDIR-1), index_faces_x(NYR, NXR+1),&
+!      index_faces_y(NYR+1, NXR), index_faces_v(NYR+1, NXR+1)
+      Logical flag_core_boundary 
+      common /sketch001/ NHR, NV, N_TOT_DIR, poly_out, &
+                       npoly, npx, npy, npz,  n_fine,   &
+                       la, np_out, ns_out, nrb, nprb, &
+                       n_b, n_e, Index_Neib,&
+                       Neib, Neib_REP_STR, Numb, N_Coord,&
+                       n_core, &
+                    Index_Left_Interface, Index_Left_Interface_Poly,&
+!                    n_out_faces, &
+!                    index_faces_x,&
+!                    index_faces_y, &
+!                    index_faces_v,&
+                       gmt_crd_type,&
+                       flag_core_boundary
+
+      real hr_hex
+      real hx(NXR),hy(NYR),hz(NZR), hzp(NZR),hxp(NXR),hyp(NYR),&
+              hzt(NZ), hxy(NXYM,3),sxy(NH), volume(N_TOT),&
+              h_xyz(NDIR,N_TOT), s_xyz(NDIR, N_TOT)
+      integer iz_non_equal
+
+      common /sketch002/  hr_hex,&
+                         hx, hy, hz, hzp, hxp, hyp, hzt, hxy, &
+                         sxy, volume, h_xyz, s_xyz, &
+                         iz_non_equal 
+
+!        Numbering of the Reactor Core 
+      integer NZ_Core_Beg, NZ_Core_End, NH_Core, N_Core_Tot,&
+             np_core(NH), Numb_Poly_Core(N_POLY),&
+             NZR_Core_Beg, NZR_Core_End
+
+      real v_reactor, v_core, vol_ass(N_POLY, NZR), hz_core,&
+        hz_axial_reflector(2)  
+
+      common /sketch003/ NZ_Core_Beg, NZ_Core_End, NH_Core, &
+                N_Core_Tot, np_core, Numb_Poly_Core, &
+                NZR_Core_Beg, NZR_Core_End,&
+                v_reactor, v_core, vol_ass, hz_core,&
+                hz_axial_reflector
+
+      integer Nxr_B_Core(NYR), Nxr_E_Core(NYR), Nyr_B_Core,&
+              Nyr_E_Core, Nxr_Max_Core, Nxr_B_Min_Core
+      integer Nxr_B_Reactor(NYR), Nxr_E_Reactor(NYR), Nyr_B_Reactor, &
+              Nyr_E_Reactor, Nxr_Max_Reactor, Nxr_B_Min_Reactor
+
+      integer Index_Core(NYR, NXR), Numb_Reactor_Core(NP_Reactor_Core)
+
+      common /sketch004/  Numb_Reactor_Core, Index_Core,&
+              Nxr_B_Core, Nxr_E_Core, Nyr_B_Core,&
+              Nyr_E_Core, Nxr_Max_Core, Nxr_B_Min_Core,&
+              Nxr_B_Reactor, Nxr_E_Reactor, Nyr_B_Reactor, &
+              Nyr_E_Reactor, Nxr_Max_Reactor, Nxr_B_Min_Reactor
+
+
+! End Geometry Module
+
+! Module Reactor Model Materials
+      integer l(N_POLY,NZR), Bundle_Compos(NZR, N_Bundle_Type),&
+        Core_Load(N_POLY)
+      common /sketch005/ l, Bundle_Compos, Core_Load
+! End Module Reactor Model Materials
+
+! CONTROL ROD Module
+!     nrods(NN_Crod, NN_CRod_Bundle)  - number of bundles coverd by CR; 
+!     Mat_Com_Rod(NN_CRod, NN_CRod_El) - material composition for the control rod elements
+!     CR_Compos(NN_CRod_El, NN_CRod_Type) - composition of the material types in CR
+!     NROD_Scram - Total Number of the Control Rods for Sram
+!     Num_Rod_Scram(NN_CRod)  - Index of the Moving Control Rod in the Array nrods(NN_CRod)
+!     CR_Load(NN_CRod) - CR Loading in the core (types of CR)
+
+!     NROD_MOVING - Total Number of the Ejected Control Rods
+!     Num_Mov_Rod(NN_CRod)  - Index of the Moving Control Rod in the Array nrods(NN_CRod)
+
+
+!     rod_node - position of the rod element in the node 
+!     zrods - position of the control rod (relative value for neutronics benchmarks)
+!           absolute value from the bottom line for NEACRP
+!     Mov_Rods - Logical showing that the control rod changed position 
+!     h_rod_el - length of the control rod elements
+
+!     V_Rods(NN_CRod) - Velocity of the Moving Control Rod
+
+!     v_rods_scram - velocity of the scram control rods
+!     Time_Scram_Delay - time delay of the Scram
+!     Power_Scram - Power when Scram is initiated
+!     Flag_Scram - Flag that scram is ON
+!     Flag_Rod_Bottom - Flag that the moving CR reached the bottom position
+!     Flag_Rod_Top - Flag that moving CR reached the top position
+!     Flag_Set_Time_scram - Flag that the power reached scram power and scram
+!                                                                     initiated 
+!      INTEGER, ALLOCATABLE, PUBLIC :: Mat_Com_Rod(NN_CRod,NN_CRod_El), &
+!                                     nrods(NN_CRod, NN_CRod_Bundle)
+
+! Data for All CRD
+
+      INTEGER Mat_Com_Rod(NN_CRod,NN_CRod_El), &
+             nrods(NN_CRod, NN_CRod_Bundle), &
+             CR_Compos(NN_CRod_El, NN_CRod_Type), &
+             CR_Load(NN_CRod)
+
+! Data for Moving CRD
+      INTEGER Nrod_moving, &
+             Num_Mov_Rod(NN_CRod)  
+
+! Data for Scram
+      INTEGER NROD_Scram, Num_Rod_Scram(NN_CRod) 
+
+      CHARACTER*3  CRD_Mov_Type
+      CHARACTER*6  CRD_Rod_Type
+
+      COMMON /sketch006/ Mat_Com_Rod, nrods, CR_Compos, CR_Load,&
+             Nrod_moving, Num_Mov_Rod,  &
+             NROD_Scram, Num_Rod_Scram, CRD_Mov_Type, CRD_Rod_Type
+
+! Data for all CRD
+      REAL Rod_Node(NN_CRod,NZ,NN_CRod_El), &
+          zrods(NN_CRod), zrods_ini(NN_CRod), &
+          Z_Rod_Top, Z_Rod_Bottom, h_rod_el(NN_CRod_El), &
+          Old_Zrods(NN_CRod), zrods_dt(NN_CRod)
+! Data for Moving CRD
+      REAL V_Rods(NN_CRod), &
+          CRD_Time_Start(NN_CRod), CRD_Time_End(NN_CRod),&
+          CRD_Sin_Ampl(NN_CRod), CRD_Sin_Freq(NN_CRod)
+
+! Data for Scram
+      REAL Time_Scram, v_rods_scram, Time_Scram_Delay, &
+            Power_Scram,  Old_Time_Scram 
+
+
+      COMMON /sketch007/ Time_Scram, Rod_Node, &
+         zrods, zrods_ini, V_Rods, v_rods_scram, Time_Scram_Delay, &
+         Power_Scram,  Old_Time_Scram, CRD_Time_Start, CRD_Time_End,&
+         Z_Rod_Top, Z_Rod_Bottom, h_rod_el, Old_Zrods,&
+         CRD_Sin_Ampl, CRD_Sin_freq, zrods_dt
+
+      LOGICAL Flag_Set_Time_Scram, Mov_Rods(NN_CRod), Flag_Scram,  &
+         Old_Flag_Set_Time_scram
+
+      COMMON /sketch008/ Mov_Rods, &
+        Flag_Scram,  Flag_Set_Time_scram, Old_Flag_Set_Time_scram
+
+
+
+! MACRO CROSS SECTIONS Module
+      character*16 xs_crod_cusp
+
+      integer i_diff_coeff, I_flag_vel_Library, I_flag_deln_Library
+
+      real XS_D(NG, N_TOT), XS_SA(NG, N_TOT), XS_SIK(NG,NG,N_TOT),&
+             XS_SF(NG, N_TOT), XS_SF_P(NG,N_TOT), xs_al(NG,N_TOT),&
+             xs_bet(N_TOT), xs_beta(MD, N_TOT), xs_alfa(MD, N_TOT)
+      common/sketch009/ XS_D, XS_SA, XS_SIK, XS_SF, XS_SF_P, &
+             i_diff_coeff, I_flag_vel_Library, xs_al,&
+             I_flag_deln_Library, xs_bet, xs_beta, xs_alfa
+      common/sketch109/ xs_crod_cusp
+
+
+      real sf,d,sik,sa, sf_p
+      common/sketch010/ sf(NNODE,NG),d(NNODE,NG),sf_p(NNODE,NG),&
+                        sik(NNODE,NG,NG),sa(NNODE,NG)
+      real sf_fb,sf_p_fb, sa_fb,sik_fb,d_fb
+
+      common/sketch011/ sf_fb(N_FEEDBACK,NG,NNODE),&
+           sf_p_fb(N_FEEDBACK,NG,NNODE), sa_fb(N_FEEDBACK,NG,NNODE),&
+           sik_fb(N_FEEDBACK,NG,NG,NNODE),d_fb(N_FEEDBACK,NG,NNODE)
+
+      REAL sf_ca(NG, NN_CRod_Comp),&
+           sf_p_ca(NG, NN_CRod_Comp), sa_ca(NG, NN_CRod_Comp),&
+           sik_ca(NG, NG, NN_CRod_Comp),d_ca(NG, NN_CRod_Comp)
+
+      COMMON /sketch012/ sf_ca,sf_p_ca, sa_ca, sik_ca, d_ca
+
+
+      real xp, xpn
+      common/sketch013/  xp(NG),xpn(NG)
+
+! assembly discontinuity factors
+      real adf(NNODE, NG, 2, NDIR), xs_adf(NG, 2, NDIR, N_TOT)
+        logical flag_adf
+      common/sketch913/ adf, xs_adf, flag_adf
+
+! End Module Macro Cross Section
+
+! MODULE INPUT PARAMETERS
+      integer N_ZAP, i_auto
+      real  st_eps, facmax
+
+      character*80 PROBLEM_TITLE(N_LINE_PROBLEM_TITLE)
+
+      character*3 REACTOR_TYPE
+      character*4 Nodal_Method
+
+
+      character*100 FILE_DMP_IN,FILE_DMP_OUT_ST,FILE_DMP_OUT_KIN, &
+                       FILE_INPUT, FILE_MAP,&
+                    FILE_DIST, FILE_CD,&
+                   file_dmp_skazka_out, file_dmp_skazka_in,&
+                   File_BRN_in, File_BRN_out
+     
+      character*20 TH_Model, Time_Stepping, XS_model, Problem_Type,&
+                  Steady_State_Type, Xe_Sm_Model
+
+      character*3 Kinetics_Method
+      character*7 iter_solver
+      character*4 TRL_Approx
+      character*5 NonlinearIterations
+      common /sketch014/  &
+         Kinetics_Method, iter_solver, Nodal_Method, TRL_Approx,&
+         NonlinearIterations
+
+      common /sketch015/  N_ZAP, &
+                         st_eps, facmax, i_auto, &
+                         TH_Model, Time_Stepping,&
+                         XS_Model
+      common /sketch016/ FILE_DMP_IN,FILE_DMP_OUT_ST,FILE_DMP_OUT_KIN,&
+                        file_dmp_skazka_out, file_dmp_skazka_in,  &
+                        File_BRN_in, File_BRN_out, &
+                        FILE_INPUT, FILE_MAP, &
+                        FILE_DIST, FILE_CD, PROBLEM_TITLE,&
+                        REACTOR_TYPE, Problem_Type,&
+                        Steady_State_Type, Xe_Sm_Model       
+! acuracy
+      real  e_inter, e_outer_l, e_flux_l 
+      integer n_inter, n_outer, n_out_max
+      integer     iflag_divide_keff
+      common /sketch017/ e_inter, e_outer_l,&
+              n_inter, n_outer, n_out_max,e_flux_l,&
+              iflag_divide_keff
+ 
+! END MODULE INPUT PARAMETERS
+
+
+! Boundary Conditions Module
+      real b2(NG), DR(NG,2,NDIR), cg(2, NDIR), fg(NG, 2, NDIR) 
+      integer  i_dr(2,NDIR) 
+      common /sketch019/ b2, dr, i_dr, cg, fg 
+! End Module Boundary Conditions
+
+
+! MODULE NEUTRON FLUX
+      real Flux(NG,N_TOT), Flux_N(NG,N_TOT), Flux_N1(NG, N_TOT)
+!OMEGA     &      Flux_dt(NG, N_TOT)
+!c       real    Flux_Mom(MOMENTS, NG, N_TOT, NDIR)
+
+! Additional Vectors for Neutron Kinetics Calculations
+      real Flux_k(NG,N_TOT), Flux_k1(NG,N_TOT)
+
+      real Flux_A(NG, N_TOT)
+
+!c         common /flux_moments/ Flux_Mom
+
+      common/sketch020/ Flux, Flux_N, Flux_N1, Flux_k, Flux_k1
+!OMEGA     &                        Flux_dt
+
+      common /sketch021/ Flux_A
+
+! END MODULE NEUTRON FLUX
+
+! Module Chebyshev Parametrs
+      real xme, xme_, xbe, xme_ini, ro_cheb, gamma, r_cheb,&
+                        f_cheb, delnp,delnpi,delnp0,&
+                        rc_cheb, rc_cheb0, alsp_cheb,csp_cheb
+      integer npolin, npolins, npolin_min, is_polin, t_cheb
+      common/sketch022/ xme, xme_, xbe, xme_ini, ro_cheb, gamma, &
+                        r_cheb,f_cheb, delnp,delnpi,delnp0,&
+                        rc_cheb, rc_cheb0, alsp_cheb,csp_cheb,&
+                        npolin, npolins, npolin_min, is_polin,&
+                        t_cheb
+! End Module Chebyshev Parameters
+
+! MODULE COUPLING MATRIX
+
+      real MAT_Block_Diag(NG, NG, N_TOT), &
+          MAT_Block_Diag_Inv(NG, NG, N_TOT),&
+          MAT_Block_RHS(NG, N_TOT), &
+!          MAT_Diag_FD(NG, N_TOT), &
+          D_Nod(NG, N_TOT, 2, NDIR),&
+          MAT_Diag_Tot(NG, N_TOT), &
+          MAT_Tot(NG, NE_T, N_TOT), &
+          MAT_RHS_K(NG, N_TOT)
+
+      common/sketch023/ MAT_Block_Diag, MAT_Block_Diag_Inv, &
+          MAT_Block_RHS, &
+!          MAT_Diag_FD, &
+          D_Nod,&
+          MAT_Diag_Tot, &
+          MAT_Tot, MAT_RHS_K 
+
+! END MODULE
+
+! MODULE TRANSVERSE LEAKAGES
+      real TRL_XYZ(NG, N_TOT, NDIR), TRL_0_XYZ(NG, N_TOT, NDIR),&
+                TRL_QLA(2, NG, N_TOT, NDIR), &
+                TRL_1_UVW(NG, N_TOT, NDIR, 2) 
+
+      COMMON /sketch024/  TRL_XYZ, TRL_0_XYZ, TRL_QLA, &
+                            TRL_1_UVW
+! END OF THE MODULE
+
+! Module EIGenvalue & Fission Source
+      real k_ef, d_kef_l,  d_flux_l,&
+                          k_ef_min, k_ef_max,&
+                          deln_fp, deln_dp, kin_k_ef
+      common /sketch025/ k_ef, d_kef_l, d_flux_l,&
+                          k_ef_min, k_ef_max, &
+                          deln_fp, deln_dp, kin_k_ef
+ 
+      real Source(N_TOT), S_Norm,  Source_dt(N_TOT)
+      common /sketch026/ Source, S_Norm, Source_dt
+
+      real eigenv,  eigenv_shift,  delta_shift
+      common/sketch029/ eigenv, eigenv_shift, delta_shift
+
+! End Module Eigenvalue
+! End Module Fission Source Term & Scattering
+
+! Module Power Distribution
+      real  p(NH,NZ), p_col(0:N_POLY,0:NZR), &
+           p_mm(-3:3), &
+           p_total, p_reactor,  & ! p_total (in MWt)
+           pow_conv(NG), Pow_Norm,&
+           pow_reactor_down, pow_reactor_up, pow_ax_offset
+       
+
+      integer k_p_mm(3, -3:3)
+
+      common/sketch030/ p, p_col, p_mm,  &
+           p_total, p_reactor, pow_conv, Pow_Norm, &
+           pow_reactor_down, pow_reactor_up, pow_ax_offset,&
+           k_p_mm
+! End Module Power Distribution
+
+! Module BURNUP Distribution
+      real  brn(NH,NZ), brn_col(0:N_POLY,0:NZR), &
+           brn_mm(-3:3), hm_mass_of_fuel(N_POLY,NZR), ref_power 
+      integer k_brn_mm(3, -3:3)
+      character*4 brn_form_time_table
+
+      common/sketch130/ brn, brn_col, brn_mm,  hm_mass_of_fuel, &
+           ref_power, k_brn_mm, brn_form_time_table
+! End Module burnup Distribution
+
+! Module Isotope Burnup
+      CHARACTER*5 isotope_name(N_ISOTOPE)
+      REAL, DIMENSION(N_ISOTOPE,N_TOT) :: yields_isotope,&
+                    lambda_isotope(N_ISOTOPE) 
+      REAL, DIMENSION(N_ISOTOPE, NG, N_TOT) :: sa_isotope
+      real  conc_isotope(NH,NZ,N_ISOTOPE), &
+           conc_isotope_col(0:N_POLY,0:NZR,N_ISOTOPE), &
+           conc_isotope_mm(-3:3,N_ISOTOPE),&
+           conc_reactor_down_i, conc_reactor_up_i, conc_ax_offset_i,&
+           conc_reactor_down_xe, conc_reactor_up_xe, &
+           conc_ax_offset_xe
+
+      integer k_conc_isotope_mm(3, -3:3,N_ISOTOPE)
+
+      common/sketch230/  isotope_name, yields_isotope, &
+       lambda_isotope,  &
+       sa_isotope,  conc_isotope, conc_isotope_col, &
+       conc_isotope_mm, &
+       conc_reactor_down_i, conc_reactor_up_i, conc_ax_offset_i,&
+       conc_reactor_down_xe, conc_reactor_up_xe, &
+       conc_ax_offset_xe,&
+       k_conc_isotope_mm
+! End Module Isotope Burnup
+
+! Module k_inf Distribution
+      real  k_inf_lib(N_TOT), k_inf(N_TOT)
+      common/sketch330/ k_inf_lib, k_inf
+! End Module k_inf Distribution
+
+
+
+! Module  NEUTRON   KINETICS VARIABLES
+      integer i_beta
+      real al(NG), alfa(MD), beta(MD),bet, v(NG), xm(NG),&
+                          eco(MD), ecn(MD), ec(MD), Prec(MD, N_TOT)
+      common /sketch031/ al, alfa, beta,bet, v, xm,&
+                          eco, ecn, ec, Prec, i_beta
+
+! Module  Decay Heat Variables
+      real*8  lam_dc(MH), ej_dc(MH), e_dc, &
+                  edho(MH), edhn(MH), edh(MH), p_dh(MH,NH,NZ),&
+                  p_dt(NH,NZ), p_tot(NH, NZ), dt_dh
+      integer i_flag_dh
+      common /sketch131/ lam_dc, ej_dc, e_dc, &
+                  edho, edhn, edh, p_dh, p_dt, p_tot, dt_dh, i_flag_dh
+
+
+
+!       Common for automatic time step size procedure                 *
+      real dt_sketch, dt_trac
+      integer i_time,  n_step_ref
+      real  Time_Error, TE_Flux, comp_time, dt_save
+      COMMON /sketch032/ dt_sketch, dt_trac, i_time, n_step_ref, &
+                          Time_Error, TE_Flux, comp_time, dt_save
+
+      real Old_Time, Old_Flux(NG,N_TOT), Old_TRL(NG, N_TOT, NDIR),&
+             Old_prec(MD, N_TOT), Old_Source(N_TOT)
+      real*8        Old_p(NH,NZ),  OLD_p_dh(MH,NH,NZ)
+!c     &        Old_Flux_Mom(MOMENTS, NG, N_TOT, NDIR)
+      real Flux_Coarse(NG, N_TOT)
+      COMMON /sketch033/ Old_Time, Old_Flux, Old_TRL,&
+             Old_prec, Old_Source,  Flux_Coarse
+
+      COMMON /sketch833/  Old_p,  OLD_p_dh
+
+      real*8 Pow_Coarse(NH, NZ)
+      common /sketch933/ Pow_Coarse
+
+
+! Output at the Certain Time Moments
+      integer i_view, NP_VIEW, i_view_out
+      real ttv(NN_OUT_VIEW_MAX), dt_input(NN_OUT_VIEW_MAX),dt_Step_Max
+      common/sketch034/ i_view, NP_VIEW, ttv, i_view_out, &
+                      dt_input, dt_Step_Max
+!OMEGA    
+!OMEGA         real omega_flux(NG, N_TOT), omega_prec(MD, N_TOT)
+!OMEGA         common /frequencies/  omega_flux, omega_prec
+
+! End Module Neutron Kinetics
+
+!  Module TRAC - Variables for Problems with feedback
+         
+      real*8 tf_trac(NN_RT_HC_TRAC,NN_Z_HC_TRAC),&
+         tf_trac_cl(NN_RT_HC_TRAC,NN_Z_HC_TRAC),&
+         tf_trac_sf(NN_RT_HC_TRAC,NN_Z_HC_TRAC),&
+         tc_trac(NN_RT_FD_TRAC,NN_Z_FD_TRAC),&
+         ro_c_trac(NN_RT_FD_TRAC,NN_Z_FD_TRAC),&
+         p_hc_trac(NN_RT_HC_TRAC, NN_Z_HC_TRAC),&
+         p_fd_trac(NN_RT_FD_TRAC, NN_Z_FD_TRAC)
+      real  fdback(NH,NZ,N_FEEDBACK), fdback0(N_FEEDBACK),&
+           fdback00(N_FEEDBACK,NNODE), &
+           fdback_col(0:N_POLY,0:NZR,N_FEEDBACK),&
+           fdback_mm(-3:3,N_FEEDBACK)  
+
+      integer k_fdback_mm(3,-3:3, N_FEEDBACK)
+
+! dimension of the arrays ja & Map are fixed to 2NZ & 2N_POLY,
+! there are can be the cases when they are bigger than that
+      integer ia_1D_NTHC(NN_Z_HC_TRAC+1), ja_1D_NTHC(2*NZ),&
+                ia_2D_NTHC(NN_RT_HC_TRAC+1), ja_2D_NTHC(2*N_POLY)
+      real Map_1D_NTHC(2*NZ), Map_2D_NTHC(2*N_POLY)
+
+      integer ia_1D_NTFD(NN_Z_FD_TRAC+1), ja_1D_NTFD(2*NZ),&
+                ia_2D_NTFD(NN_RT_FD_TRAC+1), ja_2D_NTFD(2*N_POLY)
+      real Map_1D_NTFD(2*NZ), Map_2D_NTFD(2*N_POLY)
+
+      integer ia_1D_HCNT(NZ+1), ja_1D_HCNT(2*NZ),&
+                ia_2D_HCNT(N_POLY+1), ja_2D_HCNT(2*N_POLY)
+      real Map_1D_HCNT(2*NZ), Map_2D_HCNT(2*N_POLY)
+
+      integer ia_1D_FDNT(NZ+1), ja_1D_FDNT(2*NZ),&
+                ia_2D_FDNT(N_POLY+1), ja_2D_FDNT(2*N_POLY)
+      real Map_1D_FDNT(2*NZ), Map_2D_FDNT(2*N_POLY)
+   
+      real Cool_Heating
+     
+      real Conv_Cool_Dens, Conv_Fuel_Temp, Conv_Cool_Temp
+
+      common /sketch038/   fdback, fdback0, fdback00
+        
+      common /sketch0381/  fdback_col, fdback_mm, k_fdback_mm
+
+      common /sketch039/ ia_1D_NTHC, ja_1D_NTHC, Map_1D_NTHC, &
+                ia_2D_NTHC, ja_2D_NTHC, Map_2D_NTHC,&
+                ia_1D_HCNT, ja_1D_HCNT, Map_1D_HCNT, &
+                ia_2D_HCNT, ja_2D_HCNT, Map_2D_HCNT,&
+                ia_1D_FDNT, ja_1D_FDNT, Map_1D_FDNT, &
+                ia_2D_FDNT, ja_2D_FDNT, Map_2D_FDNT,&
+                ia_1D_NTFD, ja_1D_NTFD, ia_2D_NTFD,&
+                ja_2D_NTFD, Map_1D_NTFD, Map_2D_NTFD,&
+                Cool_Heating
+         
+
+      character*8 TRAC_Version
+
+      common /sketch040/ p_hc_trac, p_fd_trac
+      common /sketch041/ tf_trac, tc_trac, ro_c_trac,&
+           tf_trac_cl, tf_trac_sf
+
+      common/sketch042/  TRAC_Version
+
+      common/sketch142/ Conv_Cool_Dens,Conv_Fuel_Temp,Conv_Cool_Temp
+
+! End module TRAC
+
+           
+! module Boron Critical Search
+      integer  I_Bor_Start
+      real e_critical, e_boron_start, k_ef_prev, boron_prev(NH,NZ)
+         
+      common /sketch043/ e_critical, e_boron_start, boron_prev, &
+                        k_ef_prev,  I_Bor_Start
+
+! End Module Boron Critical Search
+
+! Module Compariosn with the Reference Solution
+      integer I_Comp
+      character*100 File_Reference
+      common/sketch044/ I_Comp, File_Reference
+! END Module Comparison with the Reference Solution
+
+! Module Point Kinetics Equations
+      double precision react, al_prompt, Pow_Point, &
+                  Prec_Point(MD), react_dt, Pow_Point_dt, &
+                  Point_Deriv, Point_Ampl_R
+      double precision Old_react, Old_Pow_Point, Old_Prec_Point(MD)
+
+      common /sketch045/ react, al_prompt, Pow_Point, Prec_Point,&
+          react_dt, Pow_Point_dt, Point_Deriv, Point_Ampl_R
+      common /sketch046/ Old_react, Old_Pow_Point, Old_Prec_Point
+! End Module Point Kinetics
+
+
+! Module Computing Time 
+      real  time_sk_cpu, &
+          time_th_cpu,&
+          time_nonl_cpu, time_cmfd_cpu, time_XS_cpu,&
+          time_ch_tot(2), time_ch_cpu, time_output_CPU
+
+
+      common /sketch047/  time_sk_cpu, &
+           time_th_cpu, time_nonl_cpu, time_cmfd_cpu,&
+           time_XS_cpu, time_ch_tot, time_ch_cpu,&
+           time_output_CPU 
+! End Module Computing Time
+
+! Module BWR Ringhals Data
+
+      integer Fuel_Type_Core(NZR_Core, NP_Reactor_Core),&
+        CR_Presence(NZR_Core, NP_Reactor_Core),&
+        CR_Type(NZR_Core, NP_Reactor_Core)
+
+      real Xenon(NZR_Core, NP_Reactor_Core), &
+          VHIST(NZR_Core, NP_Reactor_Core), &
+          SSHIST(NZR_Core, NP_Reactor_Core),&
+          BURNUP(NZR_Core, NP_Reactor_Core),&
+          VOID(NZR_Core, NP_Reactor_Core), &
+          POW_RIN(NZR_Core, NP_Reactor_Core)
+
+
+      common /sketch048/ Fuel_Type_Core, CR_Presence,&
+        CR_Type, Xenon, VHIST, SSHIST,  BURNUP, VOID, POW_RIN
+
+      integer n_burnup_int(NZR_Core, NP_Reactor_Core),&
+         n_hist_void_int(NZR_Core, NP_Reactor_Core)
+
+      real CONV_HIST(NZR_Core, NP_Reactor_Core)
+
+      common /sketch049/ n_burnup_int, n_hist_void_int, CONV_HIST
+
+! Output Data into "SKETCH.lst" and *.GRF files   
+
+      INTEGER N_OUT_RG_DIST
+        PARAMETER (N_OUT_RG_DIST = 7)
+      INTEGER N_OUT_ST_SCAL, N_OUT_ST_VEC
+        PARAMETER (N_OUT_ST_SCAL = 0, N_OUT_ST_VEC = 0)
+! 1 - Burnup
+! 2 - Xenon
+! 3 - Void History
+! 4 - Control Rod History
+! 5 - Void
+! 6 - Power Density
+! 7 - Conversion History (Void + Control Rod History)
+
+        REAL  dist_rg_col(0:N_POLY,0:NZR,N_OUT_RG_DIST),&
+           dist_rg_mm(-3:3, N_OUT_RG_DIST) 
+      INTEGER k_dist_rg_mm(3, -3:3, N_OUT_RG_DIST) 
+
+      CHARACTER*80 NAME_ST_DIST(N_OUT_RG_DIST)
+
+      COMMON /therm0491/  dist_rg_col,  dist_rg_mm, k_dist_rg_mm,&
+                          NAME_ST_DIST
+
+!    & ,NAME_ST_SCAL, NAME_ST_VEC, DIM_ST_VEC(N_OUT_ST_SCAL)
+
+! End Module BWR Ringhals
+!=====================================================================!
+!     CG Type Iterative Solvers 
+!=====================================================================!
+      integer NN_NON_ZERO
+! TMP
+      parameter (NN_NON_ZERO = 2*NG*( NH*(NZ-1) + NZ*(2*NH-NX-NY) ) +&
+        NG*NG*N_TOT + 1) ! SPARSKIT requires + 1 number of nenzeros 
+      integer nrow_max, nnz_max, lwk , m_gmres
+
+! nrow_max - maximum number of matrix columns &  rows
+! nnz_max - maximum number of the nonzero matrix elements
+! m - nuber of iterations of FOM & GMRES
+!       BCGSTAB == 8 * n
+!       TFQMR   == 11 * n
+!       FOM     == (n+3)*(m+2) + (m+1)*m/2 (m = ipar(5), default m=15)
+!       GMRES   == (n+3)*(m+2) + (m+1)*m/2 (m = ipar(5), default m=15)
+! maxits  - maximum numbe r of iterations
+! nnz_max = nnz + 1     ! ?
+       
+      parameter (nrow_max=NG*N_TOT, &
+        nnz_max= NN_NON_ZERO, m_gmres = 10)  ! ,lwk=nrow_max*40)
+      parameter (lwk = MAX0( 11*nrow_max, &
+         ((nrow_max+3)*(m_gmres+2) + (m_gmres+1)*m_gmres/2) ) )
+
+      integer nrow,  nnz
+         parameter (nrow = NG*N_TOT)
+      parameter (nnz = NN_NON_ZERO - 1)
+
+        integer ipar(16)
+
+      common /sk_int_cgsolv/ ipar
+
+!      real*8 sol(nrow_max), rhs(nrow_max), wk(lwk)
+!      real*8  xran(nrow_max), fpar(16)
+
+      real  sol(nrow_max), rhs(nrow_max), wk(lwk)
+      real  xran(nrow_max), fpar(16)
+
+      common /sk_r8_cgsolv/ sol, rhs, wk, fpar, xran
+
+!=====================================================================!
+!  END   CG Type Iterative Solvers 
+!=====================================================================!
+
+!=====================================================================!
+! Output Data into "SKETCH.lst" and *.GRF files   
+!=====================================================================!
+      INTEGER N_OUT_TH_DIST
+      PARAMETER (N_OUT_TH_DIST = 3)
+      INTEGER N_OUT_TR_SCAL, N_OUT_TR_VEC
+      PARAMETER (N_OUT_TR_SCAL =11, N_OUT_TR_VEC= 1)
+! Transient scalar
+! 1  - Reactor Power
+! 2  - Reactivity
+! 3  - dt_sketch
+! 4  - dt_trac
+! 5  - computed pressure error (SKAZKA module)
+! 6  - computed enthalpy error (SKAZKA module)
+! 7  - k_{eff}
+! 8  - axial power offset (p_down - p_up)*100./(p_up+p_down)
+! 9  - axial power offset I (p_down - p_up)*100./(p_up+p_down)
+! 10  - axial power offset Xe (p_down - p_up)*100./(p_up+p_down)
+! 11 - Average Reactor Pressure, Pa (SKAZKA module)
+
+      real data_scalar_skazka(2), p_av_reactor
+
+      COMMON /therm049/  p_av_reactor
+
+! Transient Vectors
+! 1 - Control Rod Positions
+
+      REAL  dist_th_col(0:N_POLY,0:NZR,N_OUT_TH_DIST),&
+           dist_th_mm(-3:3, N_OUT_TH_DIST) 
+      INTEGER k_dist_th_mm(3, -3:3, N_OUT_TH_DIST) 
+! Do n = 1, NN_FRD_FA
+! 1 - Fuel Centerline Temperature, [K]
+! 2 - Cladding Inner Surface Temperature, [K]
+! 3 - Fuel Enthalpy [J/Kg]
+! End DO
+
+! Power + Feedback Distributions + T/H Distributions
+      INTEGER :: N_TR_DIST, NN_TR_DIST 
+      PARAMETER(NN_TR_DIST=NG+1+N_FEEDBACK+N_OUT_TH_DIST+1+N_ISOTOPE)
+      CHARACTER*80 :: NAME_TR_DIST(NN_TR_DIST)
+! flux(NG) + power + feedbacks + T/H + burnup + isotopes
+      CHARACTER*80 NAME_TR_SCAL(N_OUT_TR_SCAL), &
+                  NAME_TR_VEC(N_OUT_TR_VEC)
+      INTEGER DIM_TR_VEC(N_OUT_TR_VEC)
+
+      COMMON /therm050/  dist_th_col, dist_th_mm, k_dist_th_mm, &
+                        DIM_TR_VEC, &
+                        N_TR_DIST, NAME_TR_DIST, NAME_TR_SCAL, &
+                        NAME_TR_VEC, data_scalar_skazka
+
+      REAL dist_flux(0:N_POLY, 0:NZR, NG), dist_flux_mm(-3:3, NG)
+      INTEGER k_dist_flux(3, -3:3, NG) 
+      INTEGER N_DIST_REACTOR
+      COMMON /therm055/  dist_flux, dist_flux_mm, k_dist_flux, &
+                        N_DIST_REACTOR
+
+!    
+!=====================================================================!
+! END Output Data into "SKETCH.lst" and *.GRF files   
+!=====================================================================!
+

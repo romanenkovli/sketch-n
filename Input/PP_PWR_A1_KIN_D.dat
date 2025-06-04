@@ -1,0 +1,13 @@
+! OUTPUT OF THE DISTRIBUTIONS
+! Power Distribution
+MD001 0.0
+! Doppler Fuel Temperature
+MD005 0.001
+! Maximum Fuel Centerline Temperature
+MD006 0.001
+! Fuel Enthalpy
+MD007 0.0
+
+
+
+

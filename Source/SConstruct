@@ -1,0 +1,28 @@
+import os
+
+dbg = 1
+env = Environment(ENV=os.environ)
+if dbg:
+#    flg = ["-fbacktrace", "-ffpe-trap=invalid,zero,overflow,underflow,denormal"]
+#    flg = ["-fbacktrace", "-ffpe-trap=denormal"]
+    flg=[]
+    env.Append(LINKFLAGS=["-g"])
+    env.Append(F90FLAGS=["-g"]+flg)
+    env.Append(FORTRANFLAGS=["-g"]+flg)
+
+else:
+    env.Append(F90FLAGS=["-O2"])
+    env.Append(FORTRANFLAGS=["-O2"])
+env.Append(F90PATH=["../Include"])
+slatec = env.SConscript("../slatec/SConscript", "env", duplicate=0)
+prop_lib_src = env.SConscript("../Lib_Source/SConscript", "env", duplicate=0)
+# Default(slatec)
+# Default(prop_lib_src)
+env.Append(LIBS=[prop_lib_src, slatec])
+
+env.Append(F90PATH=[".","../Include"])
+src=env.Glob("*.f90")
+exe = env.Program("sketch.exe",src)
+Default(exe)
+t=env.Install("..",exe)
+env.Default(t)

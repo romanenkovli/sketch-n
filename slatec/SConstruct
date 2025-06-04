@@ -1,0 +1,8 @@
+import os
+env = Environment(ENV=os.environ)
+
+#env.Append(FORTRANPATH=[])
+#env.Append(FORTRANFLAGS=["/I:fh","/I:../include"])
+env.SConscript("SConscript","env")
+
+#env.Library("slatec", Glob("*.f"))
