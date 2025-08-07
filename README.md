@@ -15,7 +15,7 @@ The SKETCH-N code solves neutron diffusion equations in x-y-z and hexagonal-z ge
 The polynomial, semi-analytic and analytic nodal methods based on the nonlinear iteration procedure can be used for spatial discretization of diffusion equations. The time integration of the neutron kinetics problem is performed by a fully implicit scheme with an analytical treatment of the delayed neutron precursors. The steady-state eigenvalue problems are solved by inverse iterations with Wielandt shift, the Chebyshev adaptive acceleration procedure is used for the neutron kinetics problems. The block symmetric Gauss-Seidel preconditioner is applied in the both iterative methods. The flux-weighting homogenization procedure is used for partially-rodded nodes to minimize a rod cusping effect. Simple one-phase model of the thermal-hydraulics of fuel assembly is included in the code. The code also has an interface module for a coupling with transient analysis codes , such as TRAC. The interface module performs a data exchange between the codes, synchronizes a time stepping and maps the neutronics data onto thermal-hydraulics spatial mesh and vice versa. The interface module is based on the message passing library PVM (Parallel Virtual Machine).
 
 ### Limitations 
-The code can treat the neutron diffusion problems in Cartesian geometry. Few-group macro cross sections and their dependencies are provided by a code user. The code does not have fuel burn-up modelling capabilities. An external thermal-hydraulics code is generally required for the calculation of the “real-life” problems.
+The code can treat the neutron diffusion problems in Cartesian and Hexagonal-z geometries. Few-group macro cross sections and their dependencies are provided by a code user. An external thermal-hydraulics code is generally required for the calculation of the “real-life” problems.
 
 ### Typical Running Time 
 The running time of the full-core case C1 of the PWR NEACRP rod ejection benchmark (2 neutron energy groups, 6 groups of the delayed neutron precursors, 884x18 neutronics nodes, 910 time steps) is 68 minutes on Sun UltraSPARC I (143 MHz) with an internal thermal hydraulics model.
@@ -61,3 +61,6 @@ kinetics, three-dimensional, neutron diffusion, nodal methods, nonlinear iterati
 	Tel.: +7-963-648-87-81
 	E-mail: vgzimin@mail.ru
 
+## Installation
+1. Clone the project to the preferable place on your PC.
+2. fggf
