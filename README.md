@@ -44,7 +44,7 @@ A workstation under UNIX.
 Fortran 77 and Fortran 90 
 
 ### Other Programming or Operating Information or Restrictions 
-The interface module requires [PVM] (http://www.epm.ornl.gov/pvm/pvm\_home.html) installed on a computer. The PVM is a public domain software available from NETLIB.
+The interface module requires [PVM](http://www.epm.ornl.gov/pvm/pvm\_home.html) installed on a computer. The PVM is a public domain software available from NETLIB.
 
 ### Material Available
 Source Code
