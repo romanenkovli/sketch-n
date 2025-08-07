@@ -37,8 +37,10 @@ The SKETCH-N code has been verified by solving the steady-state and neutron kine
 * Asaka, H., V. G. Zimin, T. Iguchi, and Y. Anoda, “Coupling of the Thermal-Hydraulic TRAC Codes with 3D Neutron Kinetics Code SKETCH-N”, Proc. of OECD/CSNI Workshop on Advanced Thermal- Hydraulic and Neutronics Codes: Current and Future Applications, Barcelona, Spain, 10-13 April, 2000
 * Zimin, V. G., H. Asaka, Y. Anoda, E. Kaloinen and R. Kyrki-Rajamaki, “Analysis of NEACRP 3D BWR Core Transient Benchmark”, Proc. of the 4 Intl. Conf. on Supercomputing in Nuclear Application SNA 2000, September 4-7, 2000, Tokyo, Japan.
 
-### Machine Requirements 
-A workstation under UNIX.
+### Requirements 
+A workstation under UNIX with fortran compiler.
+
+Since scons is used for building processes scons is required to be installed on your workstation.
 
 ### Program Language Used 
 Fortran 77 and Fortran 90 
@@ -47,10 +49,10 @@ Fortran 77 and Fortran 90
 The interface module requires [PVM](http://www.epm.ornl.gov/pvm/pvm\_home.html) installed on a computer. The PVM is a public domain software available from NETLIB.
 
 ### Material Available
-Source Code
-Sample LWR Benchmark Problems Input and Output Files 
-SKETCH-N Manual, vol. I. Model Description
-SKETCH-N Manual, vol. II User’s Guide
+* Source Code
+* Sample LWR Benchmark Problems Input and Output Files 
+* SKETCH-N Manual, vol. I. Model Description
+* SKETCH-N Manual, vol. II User’s Guide
 
 ### Keywords
 kinetics, three-dimensional, neutron diffusion, nodal methods, nonlinear iteration procedure, reactor transient analysis.
@@ -63,4 +65,9 @@ kinetics, three-dimensional, neutron diffusion, nodal methods, nonlinear iterati
 
 ## Installation
 1. Clone the project to the preferable place on your PC.
-2. fggf
+2. Go to Source directory and type scons in terminal.
+
+Note that for different models with different parameters in the include file *parameters.fh* SKETCH-N needed to be recompiled.
+
+Also you can look to the compillation of the provided test samples which are presented in the *Shell* directory.
+
